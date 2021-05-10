@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flash_chat/screens/chat_screen.dart';
 class RoundedButton extends StatelessWidget {
   RoundedButton({this.title, this.colour, @required this.onPressed});
   final Color colour;
@@ -28,3 +29,5 @@ class RoundedButton extends StatelessWidget {
     );
   }
 }
+
+

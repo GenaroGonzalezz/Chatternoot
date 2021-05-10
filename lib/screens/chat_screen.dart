@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'about_us.dart';
+import 'home.dart';
 import 'welcome_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'configuracion.dart';
+
 
 class ChatScreen extends StatefulWidget {
   static const id = 'chat_screen';
@@ -193,27 +197,55 @@ final bool isMe;
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-      child: Column(
-        crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-         children: <Widget>[
-           Text(sender, style: TextStyle(color: Colors.grey, fontSize: 12.0), textAlign: TextAlign.right,),
-           Material(
-            elevation: 10.0,
-            borderRadius: isMe ? BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10), topRight: Radius.circular(-10))
-                : BorderRadius.only(topRight: Radius.circular(10.0), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-            color: isMe ? Colors.lightBlueAccent : Colors.white,
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(text,
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: isMe ? Colors.white : Colors.black,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+      child:
+
+           Column(
+             mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+            crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+             children: <Widget>[
+               Text(sender, style: TextStyle(color: Colors.grey, fontSize: 12.0), textAlign: TextAlign.right,),
+               Row(
+                 mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+                 crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+           children: <Widget>[
+             if (!isMe) Container(
+               //alignment: Alignment.topRight,
+               padding: EdgeInsets.only(left: 10, right: 1),
+               //margin: const EdgeInsets.only(right: 1.0),
+               child: CircleAvatar(
+                   child: Text(sender[0])),
+             ),
+             //Mensaje
+             Material(
+               elevation: 10.0,
+               borderRadius: isMe ? BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10), topRight: Radius.circular(-10))
+                   : BorderRadius.only(topRight: Radius.circular(10.0), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+               color: isMe ? Colors.lightBlueAccent : Colors.white,
+               child: Padding(
+                 padding: EdgeInsets.all(8.0),
+                 child: Text(text,
+                   style: TextStyle(
+                     fontSize: 15.0,
+                     color: isMe ? Colors.white : Colors.black,
+                   ),
+                 ),
+               ),
+             ),
+
+             if (isMe) Container(
+               //alignment: Alignment.topRight,
+               padding: EdgeInsets.only(left: 10, right: 1),
+               //margin: const EdgeInsets.only(right: 1.0),
+               child: CircleAvatar(
+                   child: Text(sender[0])),
+             ),
+
+             ],
+           ),
+
+        //Text(sender, style: TextStyle(color: Colors.grey, fontSize: 12.0), textAlign: TextAlign.right,),
+                 ],
+               ),
     );
   }
 }
@@ -243,7 +275,10 @@ class SideDrawer extends StatelessWidget {
                       color: Colors.white,
                       image:
                       const DecorationImage(
-                          image: NetworkImage('https://2.bp.blogspot.com/-J5dtIRU_dqo/WZqgWuk5r3I/AAAAAAAAAAY/9CCoDfgsfyEPfAJURbzewU5wAiEZ3mIgQCLcBGAs/s1600/Pingu%25CC%2588ino2.jpg'),
+                          image:
+                         //CircleAvatar(child: Text(loggedInUser.email[0]),
+                        NetworkImage('https://2.bp.blogspot.com/-J5dtIRU_dqo/WZqgWuk5r3I/AAAAAAAAAAY/9CCoDfgsfyEPfAJURbzewU5wAiEZ3mIgQCLcBGAs/s1600/Pingu%25CC%2588ino2.jpg'
+                           ),
                           fit: BoxFit.cover,
                       ),
                       boxShadow: [
@@ -269,17 +304,19 @@ class SideDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.home),
             title: Text('Home'),
-            onTap: () => {},
+            onTap: () => {Navigator.pushNamed(context, Home.id)},
           ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Configuración'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.pushNamed(context, Configuracion.id)
+            },
           ),
           ListTile(
             leading: Icon(Icons.people),
             title: Text('Acerca de Nosotros'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {Navigator.pushNamed(context, Acerca.id)},
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
