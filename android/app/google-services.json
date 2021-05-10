@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "8941379358",
+    "project_id": "chatternoot",
+    "storage_bucket": "chatternoot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8941379358:android:d0244fca9c9c19984eb30f",
+        "android_client_info": {
+          "package_name": "co.equipo.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8941379358-7tgrajq6oaa56v1v7al1ki076qdq81rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA-grSN1hE5Z2VjDSw6C9XF3WiI65QAek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8941379358-7tgrajq6oaa56v1v7al1ki076qdq81rr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
