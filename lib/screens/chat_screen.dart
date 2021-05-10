@@ -208,36 +208,50 @@ final bool isMe;
                  mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
                  crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
            children: <Widget>[
-             if (!isMe) Container(
-               //alignment: Alignment.topRight,
-               padding: EdgeInsets.only(left: 10, right: 1),
-               //margin: const EdgeInsets.only(right: 1.0),
-               child: CircleAvatar(
-                   child: Text(sender[0])),
+             //Para que se vea a la izquierda el otro usuario
+             if (!isMe) Material(
+               elevation: 10.0,
+               shape: CircleBorder(
+                 side: BorderSide.none,
+               ),
+               child: Padding(
+                 padding: EdgeInsets.only(left: 10, right: 9),
+                 child: CircleAvatar(
+                     backgroundColor: Colors.blueAccent,
+                     child: Text(sender[0], style: TextStyle(color: Colors.white , fontSize: 18),)),
+               ),
              ),
              //Mensaje
-             Material(
-               elevation: 10.0,
-               borderRadius: isMe ? BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10), topRight: Radius.circular(-10))
-                   : BorderRadius.only(topRight: Radius.circular(10.0), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-               color: isMe ? Colors.lightBlueAccent : Colors.white,
-               child: Padding(
-                 padding: EdgeInsets.all(8.0),
-                 child: Text(text,
-                   style: TextStyle(
-                     fontSize: 15.0,
-                     color: isMe ? Colors.white : Colors.black,
+             Flexible(
+               child: Material(
+                 elevation: 10.0,
+                 borderRadius: isMe ? BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10), topRight: Radius.circular(-10))
+                     : BorderRadius.only(topRight: Radius.circular(10.0), bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                 color: isMe ? Colors.lightBlueAccent : Colors.white,
+                 child: Padding(
+                   padding: EdgeInsets.all(8.0),
+                   child: Text(text,
+                     style: TextStyle(
+                       fontSize: 15.0,
+                       color: isMe ? Colors.white : Colors.black,
+                     ),
                    ),
                  ),
                ),
              ),
 
-             if (isMe) Container(
-               //alignment: Alignment.topRight,
-               padding: EdgeInsets.only(left: 10, right: 1),
-               //margin: const EdgeInsets.only(right: 1.0),
-               child: CircleAvatar(
-                   child: Text(sender[0])),
+             //Para que se vea a la derecha el usuario actual
+             if (isMe) Material(
+               elevation: 10.0,
+               shape: CircleBorder(
+                 side: BorderSide.none,
+               ),
+               child: Padding(
+                 padding: EdgeInsets.only(left: 10, right: 9),
+                 child: CircleAvatar(
+                   backgroundColor: Colors.blueAccent,
+                     child: Text(sender[0], style: TextStyle(color: Colors.white, fontSize: 18),)),
+               ),
              ),
 
              ],
@@ -249,6 +263,9 @@ final bool isMe;
     );
   }
 }
+
+
+
 
 
 //
